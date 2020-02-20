@@ -10,9 +10,25 @@
 
 @interface TODOSTableViewController ()
 
+@property (nonatomic, strong) NSArray<NSDictionary *> *todos;
+
 @end
 
 @implementation TODOSTableViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.todos = [[TODOService new] retrieveTODOS];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,8 +55,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
-    
-    [cell.textLabel setText:@"in the train"];
+    NSString *title = self.todos[0][@"title"];
+    [cell.textLabel setText:title];
     
     return cell;
 }

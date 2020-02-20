@@ -15,8 +15,9 @@
 		ED58F2FA23FF04CF00A1C17E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F2F923FF04CF00A1C17E /* main.m */; };
 		ED58F30423FF04CF00A1C17E /* quickTrainRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F30323FF04CF00A1C17E /* quickTrainRideTests.m */; };
 		ED58F30F23FF04CF00A1C17E /* quickTrainRideUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F30E23FF04CF00A1C17E /* quickTrainRideUITests.m */; };
-		ED58F31E23FF057600A1C17E /* todossmall in Resources */ = {isa = PBXBuildFile; fileRef = ED58F31D23FF057600A1C17E /* todossmall */; };
 		ED58F32123FF062300A1C17E /* TODOSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F32023FF062300A1C17E /* TODOSTableViewController.m */; };
+		ED58F32423FF06FE00A1C17E /* TODOService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F32323FF06FE00A1C17E /* TODOService.m */; };
+		ED58F32623FF07A200A1C17E /* todossmall.json in Resources */ = {isa = PBXBuildFile; fileRef = ED58F32523FF07A200A1C17E /* todossmall.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +55,11 @@
 		ED58F30E23FF04CF00A1C17E /* quickTrainRideUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quickTrainRideUITests.m; sourceTree = "<group>"; };
 		ED58F31023FF04CF00A1C17E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED58F31C23FF052300A1C17E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		ED58F31D23FF057600A1C17E /* todossmall */ = {isa = PBXFileReference; lastKnownFileType = text; path = todossmall; sourceTree = "<group>"; };
 		ED58F31F23FF062300A1C17E /* TODOSTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TODOSTableViewController.h; sourceTree = "<group>"; };
 		ED58F32023FF062300A1C17E /* TODOSTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TODOSTableViewController.m; sourceTree = "<group>"; };
+		ED58F32223FF06FE00A1C17E /* TODOService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TODOService.h; sourceTree = "<group>"; };
+		ED58F32323FF06FE00A1C17E /* TODOService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TODOService.m; sourceTree = "<group>"; };
+		ED58F32523FF07A200A1C17E /* todossmall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = todossmall.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +90,7 @@
 		ED58F2DB23FF04CD00A1C17E = {
 			isa = PBXGroup;
 			children = (
-				ED58F31D23FF057600A1C17E /* todossmall */,
+				ED58F32523FF07A200A1C17E /* todossmall.json */,
 				ED58F31C23FF052300A1C17E /* README.md */,
 				ED58F2E623FF04CD00A1C17E /* quickTrainRide */,
 				ED58F30223FF04CF00A1C17E /* quickTrainRideTests */,
@@ -120,6 +123,8 @@
 				ED58F2F923FF04CF00A1C17E /* main.m */,
 				ED58F31F23FF062300A1C17E /* TODOSTableViewController.h */,
 				ED58F32023FF062300A1C17E /* TODOSTableViewController.m */,
+				ED58F32223FF06FE00A1C17E /* TODOService.h */,
+				ED58F32323FF06FE00A1C17E /* TODOService.m */,
 			);
 			path = quickTrainRide;
 			sourceTree = "<group>";
@@ -245,8 +250,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED58F31E23FF057600A1C17E /* todossmall in Resources */,
 				ED58F2F723FF04CF00A1C17E /* LaunchScreen.storyboard in Resources */,
+				ED58F32623FF07A200A1C17E /* todossmall.json in Resources */,
 				ED58F2F423FF04CF00A1C17E /* Assets.xcassets in Resources */,
 				ED58F2F223FF04CD00A1C17E /* Main.storyboard in Resources */,
 			);
@@ -275,6 +280,7 @@
 			files = (
 				ED58F2E923FF04CD00A1C17E /* AppDelegate.m in Sources */,
 				ED58F2FA23FF04CF00A1C17E /* main.m in Sources */,
+				ED58F32423FF06FE00A1C17E /* TODOService.m in Sources */,
 				ED58F32123FF062300A1C17E /* TODOSTableViewController.m in Sources */,
 				ED58F2EC23FF04CD00A1C17E /* SceneDelegate.m in Sources */,
 			);
