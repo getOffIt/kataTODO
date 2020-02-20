@@ -54,6 +54,7 @@
 		ED58F30A23FF04CF00A1C17E /* quickTrainRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = quickTrainRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED58F30E23FF04CF00A1C17E /* quickTrainRideUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = quickTrainRideUITests.m; sourceTree = "<group>"; };
 		ED58F31023FF04CF00A1C17E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED58F31C23FF052300A1C17E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		ED58F2DB23FF04CD00A1C17E = {
 			isa = PBXGroup;
 			children = (
+				ED58F31C23FF052300A1C17E /* README.md */,
 				ED58F2E623FF04CD00A1C17E /* quickTrainRide */,
 				ED58F30223FF04CF00A1C17E /* quickTrainRideTests */,
 				ED58F30D23FF04CF00A1C17E /* quickTrainRideUITests */,
