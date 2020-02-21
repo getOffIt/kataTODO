@@ -18,6 +18,19 @@
     return [self PODOsAdaptedFromJSONArray:array];
 }
 
+- (void)retrieveTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler {
+        NSURL *URL = [NSURL URLWithString:@"https://jsonplaceholder.typicode.com/todos"];
+    __weak typeof(self) weakself = self;
+        [[[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            __block NSArray<PODOTodo *> *array = [weakself PODOsAdaptedFromJSONArray:[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(array);
+            });
+            
+            
+        }] resume];
+}
+
 - (NSArray<PODOTodo *> *)PODOsAdaptedFromJSONArray:(NSArray *)jsonArray {
     __block NSMutableArray<PODOTodo *> *arrayOfPODO = [NSMutableArray new];
     

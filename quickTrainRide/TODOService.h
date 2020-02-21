@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TODOService : NSObject
 
 - (NSArray<PODOTodo *> *)retrieveTODOSSynchronously;
+//- (void)retrieveTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler;
+- (void)retrieveTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler;
 
 @end
 
