@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PODOTodo : NSObject
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) BOOL isCompleted;
 
 @end
 
