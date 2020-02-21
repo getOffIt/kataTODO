@@ -24,6 +24,7 @@
     [self.service retrieveTODOSWithCompletionHandler:^(NSArray<PODOTodo *> * _Nonnull podos) {
         weakself.todos = podos;
         [weakself.tableView reloadData];
+        [weakself.activityIndicator stopAnimating];
     }];
 }
 

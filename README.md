@@ -1,8 +1,8 @@
  # iOS Coding Assignment
 
 ## Requirements
-      1) It diplays list of todos
-      2) It shows spinner while loading list
+      1) It diplays list of todos - Done
+      2) It shows spinner while loading list - Done
       3) User is able to filter by All / Active / Completed
       4) Bonus: It displays name of the author, next to each task
 
