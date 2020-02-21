@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PODOTodo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TODOService : NSObject
 
-- (NSArray<NSDictionary *> *)retrieveTODOS;
+- (NSArray<PODOTodo *> *)retrieveTODOS;
 
 @end
 

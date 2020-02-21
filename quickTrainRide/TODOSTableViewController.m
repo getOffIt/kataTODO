@@ -10,7 +10,7 @@
 
 @interface TODOSTableViewController ()
 
-@property (nonatomic, strong) NSArray<NSDictionary *> *todos;
+@property (nonatomic, strong) NSArray<PODOTodo *> *todos;
 
 @end
 
@@ -55,7 +55,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
-    NSString *title = self.todos[0][@"title"];
+    NSString *title = self.todos[indexPath.row].title;
     [cell.textLabel setText:title];
     
     return cell;
