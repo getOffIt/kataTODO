@@ -10,7 +10,9 @@
 
 @interface TodosStateManager()
 
-@property (nonatomic, strong) NSArray<PODOTodo *> *initialArray;
+@property (nonatomic, strong) NSArray<PODOTodo *> *initialTODOSArray;
+@property (nonatomic, strong) NSMutableArray<PODOTodo *> *completedTODOSArray;
+@property (nonatomic, strong) NSMutableArray<PODOTodo *> *incompletedTODOSArray;
 @property (nonatomic, assign) TodoFilter internalState;
 
 @end
@@ -19,7 +21,7 @@
 
 - (NSInteger )count
 {
-    if (!self.initialArray) {
+    if (!self.initialTODOSArray) {
         return 1;
     }
     
@@ -27,7 +29,7 @@
 
         return [self filterNonCompletedArrays].count;
     }
-    return self.initialArray.count;
+    return self.initialTODOSArray.count;
 }
 
 - (void)setState:(TodoFilter) state {
@@ -35,40 +37,50 @@
 }
 
 - (void)setTodos:(NSArray<PODOTodo *> *)todos {
-    self.initialArray = todos;
+    
+    self.completedTODOSArray = nil;
+    self.incompletedTODOSArray = nil;
+    self.initialTODOSArray = todos;
+    
 }
 
-- (NSMutableArray<PODOTodo *> *)filterNonCompletedArrays {
-    NSMutableArray<PODOTodo *> *tmpArray = [NSMutableArray new];
-    [self.initialArray enumerateObjectsUsingBlock:^(PODOTodo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+- (NSArray<PODOTodo *> *)filterNonCompletedArrays {
+    if (self.completedTODOSArray) {
+        return self.completedTODOSArray;
+    }
+    self.completedTODOSArray = [NSMutableArray<PODOTodo *> new];
+    [self.initialTODOSArray enumerateObjectsUsingBlock:^(PODOTodo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.isCompleted == NO) {
-            [tmpArray addObject:obj];
+            [self.completedTODOSArray addObject:obj];
         }
     }];
-    return tmpArray;
+    return self.completedTODOSArray;
 }
 
-- (NSMutableArray<PODOTodo *> *)filterCompletedArrays {
-    NSMutableArray<PODOTodo *> *tmpArray = [NSMutableArray new];
-    [self.initialArray enumerateObjectsUsingBlock:^(PODOTodo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+- (NSArray<PODOTodo *> *)filterCompletedArrays {
+    if (self.incompletedTODOSArray) {
+        return self.incompletedTODOSArray;
+    }
+    self.incompletedTODOSArray = [NSMutableArray<PODOTodo *> new];
+    [self.initialTODOSArray enumerateObjectsUsingBlock:^(PODOTodo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.isCompleted == YES) {
-            [tmpArray addObject:obj];
+            [self.incompletedTODOSArray addObject:obj];
         }
     }];
-    return tmpArray;
+    return self.incompletedTODOSArray;
 }
 
 - (NSArray<PODOTodo *> *)todos {
     if (self.internalState == TODOSTATE_ACTIVE) {
-        NSMutableArray<PODOTodo *> * tmpArray = [self filterNonCompletedArrays];
+        NSArray<PODOTodo *> *tmpArray = [self filterNonCompletedArrays];
         return tmpArray;
     }
     if (self.internalState == TODOSTATE_COMPLETED) {
-        NSMutableArray<PODOTodo *> * tmpArray = [self filterCompletedArrays];
+        NSArray<PODOTodo *> * tmpArray = [self filterCompletedArrays];
         return tmpArray;
 
     }
-    return self.initialArray;
+    return self.initialTODOSArray;
 }
 
 @end
