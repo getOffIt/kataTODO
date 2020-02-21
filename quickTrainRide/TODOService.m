@@ -37,7 +37,7 @@
     [jsonArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL * _Nonnull stop) {
         PODOTodo *todo = [PODOTodo new];
         todo.title = dict[@"title"];
-        todo.isCompleted = dict[@"completed"];
+        todo.isCompleted = [dict[@"completed"] boolValue];
         [arrayOfPODO addObject:todo];
     }];
     
