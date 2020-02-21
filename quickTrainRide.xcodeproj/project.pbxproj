@@ -18,6 +18,7 @@
 		ED58F32123FF062300A1C17E /* TODOSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F32023FF062300A1C17E /* TODOSTableViewController.m */; };
 		ED58F32423FF06FE00A1C17E /* TODOService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F32323FF06FE00A1C17E /* TODOService.m */; };
 		ED58F32623FF07A200A1C17E /* todossmall.json in Resources */ = {isa = PBXBuildFile; fileRef = ED58F32523FF07A200A1C17E /* todossmall.json */; };
+		ED58F32923FF09EF00A1C17E /* PODOTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F32823FF09EF00A1C17E /* PODOTodo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		ED58F32223FF06FE00A1C17E /* TODOService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TODOService.h; sourceTree = "<group>"; };
 		ED58F32323FF06FE00A1C17E /* TODOService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TODOService.m; sourceTree = "<group>"; };
 		ED58F32523FF07A200A1C17E /* todossmall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = todossmall.json; sourceTree = "<group>"; };
+		ED58F32723FF09EF00A1C17E /* PODOTodo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PODOTodo.h; sourceTree = "<group>"; };
+		ED58F32823FF09EF00A1C17E /* PODOTodo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PODOTodo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				ED58F32023FF062300A1C17E /* TODOSTableViewController.m */,
 				ED58F32223FF06FE00A1C17E /* TODOService.h */,
 				ED58F32323FF06FE00A1C17E /* TODOService.m */,
+				ED58F32723FF09EF00A1C17E /* PODOTodo.h */,
+				ED58F32823FF09EF00A1C17E /* PODOTodo.m */,
 			);
 			path = quickTrainRide;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				ED58F2E923FF04CD00A1C17E /* AppDelegate.m in Sources */,
 				ED58F2FA23FF04CF00A1C17E /* main.m in Sources */,
 				ED58F32423FF06FE00A1C17E /* TODOService.m in Sources */,
+				ED58F32923FF09EF00A1C17E /* PODOTodo.m in Sources */,
 				ED58F32123FF062300A1C17E /* TODOSTableViewController.m in Sources */,
 				ED58F2EC23FF04CD00A1C17E /* SceneDelegate.m in Sources */,
 			);
