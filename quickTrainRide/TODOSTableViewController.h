@@ -11,8 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TODOSTableViewController : UITableViewController
+@interface TODOSTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
