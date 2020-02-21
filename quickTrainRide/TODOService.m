@@ -10,7 +10,7 @@
 
 @implementation TODOService
 
-- (NSArray<PODOTodo *> *)retrieveTODOS {
+- (NSArray<PODOTodo *> *)retrieveTODOSSynchronously {
     NSBundle *bundle = [NSBundle mainBundle];
     NSURL *URL = [bundle URLForResource:@"todossmall" withExtension:@"json"];
     NSData *data = [NSData dataWithContentsOfURL:URL];

@@ -27,7 +27,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.todos = [[TODOService new] retrieveTODOS];
+    self.todos = [[TODOService new] retrieveTODOSSynchronously];
 }
 
 - (void)viewDidLoad {
