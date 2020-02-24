@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isCompleted;
+@property (nonatomic, assign) NSInteger userID;
 
 @end
 

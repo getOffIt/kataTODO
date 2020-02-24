@@ -35,14 +35,14 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSBundle *bundle = [NSBundle mainBundle];
-        NSURL *URL = [bundle URLForResource:@"todossmall" withExtension:@"json"];
+        NSURL *URL = [bundle URLForResource:@"todosProd" withExtension:@"json"];
         NSData *data = [NSData dataWithContentsOfURL:URL];
         NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        __block NSArray<PODOTodo *> *retValue = [self PODOsAdaptedFromJSONArray:array];
-        
+        __block NSArray<PODOTodo *> *adaptedPodos = [self PODOsAdaptedFromJSONArray:array];
+        __block NSArray<PODOTodo *> *decoratedPodos = [self PODOs:adaptedPodos decoratedWithUsers:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            completionHandler(retValue);
+            completionHandler(decoratedPodos);
         });
     });
 }
@@ -54,10 +54,26 @@
         PODOTodo *todo = [PODOTodo new];
         todo.title = dict[@"title"];
         todo.isCompleted = [dict[@"completed"] boolValue];
+        todo.userID = [dict[@"userId"] integerValue];
         [arrayOfPODO addObject:todo];
     }];
     
     return arrayOfPODO;
+}
+
+- (NSArray<PODOTodo *> *)PODOs:(NSArray<PODOTodo *> *)podos decoratedWithUsers:(NSArray *)users {
+    
+    
+    return podos;
+}
+
+- (NSDictionary *)dictionaryFromJSONArray:(NSArray *)array {
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [array enumerateObjectsUsingBlock:^(NSDictionary *element, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *key = element[@"id"];
+        [dict setObject:element forKey:key];
+    }];
+    return dict;
 }
 
 @end
