@@ -46,6 +46,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
     NSString *title = [self.todoStateManager todos][indexPath.row].title;
     [cell.textLabel setText:title];
+    [cell.detailTextLabel setText:[self.todoStateManager todos][indexPath.row].title];
     
     return cell;
 }
