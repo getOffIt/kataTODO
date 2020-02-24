@@ -26,8 +26,35 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionHandler(array);
             });
+        }] resume];
+}
+
+- (void)retrieveLocalTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler {
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       NSBundle *bundle = [NSBundle mainBundle];
+       NSURL *URL = [bundle URLForResource:@"todossmall" withExtension:@"json"];
+       NSData *data = [NSData dataWithContentsOfURL:URL];
+       NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+       __block NSArray<PODOTodo *> *retValue = [self PODOsAdaptedFromJSONArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            completionHandler(retValue);
             
-            
+        });
+        
+        
+    });
+    
+    
+        NSURL *URL = [NSURL URLWithString:@"https://jsonplaceholder.typicode.com/todos"];
+    __weak typeof(self) weakself = self;
+        [[[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            __block NSArray<PODOTodo *> *array = [weakself PODOsAdaptedFromJSONArray:[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(array);
+            });
         }] resume];
 }
 

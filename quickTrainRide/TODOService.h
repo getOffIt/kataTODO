@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<PODOTodo *> *)retrieveTODOSSynchronously;
 //- (void)retrieveTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler;
 - (void)retrieveTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler;
-
+- (void)retrieveLocalTODOSWithCompletionHandler:(void (^)(NSArray<PODOTodo *> *podos))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

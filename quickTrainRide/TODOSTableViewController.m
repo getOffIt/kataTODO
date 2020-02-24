@@ -22,7 +22,7 @@
     self.todoStateManager = [TodosStateManager new];
     self.service = [TODOService new];
     __weak typeof(self) weakself = self;
-    [self.service retrieveTODOSWithCompletionHandler:^(NSArray<PODOTodo *> * _Nonnull podos) {
+    [self.service retrieveLocalTODOSWithCompletionHandler:^(NSArray<PODOTodo *> * _Nonnull podos) {
         [weakself.todoStateManager setTodos:podos];
         [weakself.tableView reloadData];
         [weakself.activityIndicator stopAnimating];

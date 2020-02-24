@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		ED144F882400658300E2DA4B /* TodosStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED144F872400658300E2DA4B /* TodosStateManager.m */; };
+		ED16CE11240417BD0096323C /* usersprod.json in Resources */ = {isa = PBXBuildFile; fileRef = ED16CE10240417BD0096323C /* usersprod.json */; };
+		ED16CE13240417C50096323C /* todosProd.json in Resources */ = {isa = PBXBuildFile; fileRef = ED16CE12240417C50096323C /* todosProd.json */; };
 		ED58F2E923FF04CD00A1C17E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F2E823FF04CD00A1C17E /* AppDelegate.m */; };
 		ED58F2EC23FF04CD00A1C17E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED58F2EB23FF04CD00A1C17E /* SceneDelegate.m */; };
 		ED58F2F223FF04CD00A1C17E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED58F2F023FF04CD00A1C17E /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		ED144F862400658300E2DA4B /* TodosStateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodosStateManager.h; sourceTree = "<group>"; };
 		ED144F872400658300E2DA4B /* TodosStateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodosStateManager.m; sourceTree = "<group>"; };
+		ED16CE10240417BD0096323C /* usersprod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = usersprod.json; path = ../../../Downloads/usersprod.json; sourceTree = "<group>"; };
+		ED16CE12240417C50096323C /* todosProd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = todosProd.json; path = ../../../Downloads/todosProd.json; sourceTree = "<group>"; };
 		ED58F2E423FF04CD00A1C17E /* quickTrainRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quickTrainRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED58F2E723FF04CD00A1C17E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ED58F2E823FF04CD00A1C17E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,7 +100,9 @@
 		ED58F2DB23FF04CD00A1C17E = {
 			isa = PBXGroup;
 			children = (
+				ED16CE10240417BD0096323C /* usersprod.json */,
 				ED58F32523FF07A200A1C17E /* todossmall.json */,
+				ED16CE12240417C50096323C /* todosProd.json */,
 				ED58F31C23FF052300A1C17E /* README.md */,
 				ED58F2E623FF04CD00A1C17E /* quickTrainRide */,
 				ED58F30223FF04CF00A1C17E /* quickTrainRideTests */,
@@ -262,7 +268,9 @@
 			files = (
 				ED58F2F723FF04CF00A1C17E /* LaunchScreen.storyboard in Resources */,
 				ED58F32623FF07A200A1C17E /* todossmall.json in Resources */,
+				ED16CE13240417C50096323C /* todosProd.json in Resources */,
 				ED58F2F423FF04CF00A1C17E /* Assets.xcassets in Resources */,
+				ED16CE11240417BD0096323C /* usersprod.json in Resources */,
 				ED58F2F223FF04CD00A1C17E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
