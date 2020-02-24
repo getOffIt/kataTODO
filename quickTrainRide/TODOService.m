@@ -37,9 +37,13 @@
         NSBundle *bundle = [NSBundle mainBundle];
         NSURL *URL = [bundle URLForResource:@"todosProd" withExtension:@"json"];
         NSData *data = [NSData dataWithContentsOfURL:URL];
-        NSArray<NSDictionary *> *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        __block NSArray<PODOTodo *> *adaptedPodos = [self PODOsAdaptedFromJSONArray:array];
-        __block NSArray<PODOTodo *> *decoratedPodos = [self PODOs:adaptedPodos decoratedWithUsers:nil];
+        NSArray<NSDictionary *> *arrayOfTodos = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+
+        NSURL *URLUsers = [bundle URLForResource:@"usersprod" withExtension:@"json"];
+        NSData *dataUsers = [NSData dataWithContentsOfURL:URLUsers];
+        NSArray<NSDictionary *> *arrayOfUsers = [NSJSONSerialization JSONObjectWithData:dataUsers options:0 error:NULL];
+        __block NSArray<PODOTodo *> *adaptedPodos = [self PODOsAdaptedFromJSONArray:arrayOfTodos];
+        __block NSArray<PODOTodo *> *decoratedPodos = [self PODOs:adaptedPodos decoratedWithUsers:arrayOfUsers];
         dispatch_async(dispatch_get_main_queue(), ^{
             
             completionHandler(decoratedPodos);
@@ -54,7 +58,8 @@
         PODOTodo *todo = [PODOTodo new];
         todo.title = dict[@"title"];
         todo.isCompleted = [dict[@"completed"] boolValue];
-        todo.userID = [dict[@"userId"] integerValue];
+        todo.userID = dict[@"userId"];
+        todo.author = @"hi";
         [arrayOfPODO addObject:todo];
     }];
     
@@ -62,7 +67,14 @@
 }
 
 - (NSArray<PODOTodo *> *)PODOs:(NSArray<PODOTodo *> *)podos decoratedWithUsers:(NSArray *)users {
+    NSDictionary *usersDict = [self dictionaryFromJSONArray:users];
     
+    for (PODOTodo *podo in podos) {
+        NSDictionary *userObject = usersDict[podo.userID];
+        if (userObject) {
+            podo.author = userObject[@"name"];
+        }
+    }
     
     return podos;
 }
