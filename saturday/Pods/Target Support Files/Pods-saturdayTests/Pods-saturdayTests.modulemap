@@ -1,0 +1,6 @@
+framework module Pods_saturdayTests {
+  umbrella header "Pods-saturdayTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
