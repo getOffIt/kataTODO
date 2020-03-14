@@ -1,14 +1,8 @@
-//
-//  TodoTableViewController.swift
-//  saturday
-//
-//  Created by Antoine Rabanes on 14/03/2020.
-//  Copyright © 2020 none. All rights reserved.
-//
-
 import UIKit
 
 class TodoTableViewController: UITableViewController {
+
+    var todos: [String] = ["hello", "antoine"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +23,13 @@ class TodoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return todos.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TODOCELLreuseIdentifier", for: indexPath)
 
-        cell.textLabel?.text = "Hi"
+        cell.textLabel?.text = todos[indexPath.row]
         return cell
     }
 }

@@ -114,12 +114,18 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `Configuration.plist`.
     static let configurationPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "plist")
     /// Resource file `instructions.md`.
     static let instructionsMd = Rswift.FileResource(bundle: R.hostingBundle, name: "instructions", pathExtension: "md")
+    /// Resource file `todosProd.json`.
+    static let todosProdJson = Rswift.FileResource(bundle: R.hostingBundle, name: "todosProd", pathExtension: "json")
+    /// Resource file `todossmall.json`.
+    static let todossmallJson = Rswift.FileResource(bundle: R.hostingBundle, name: "todossmall", pathExtension: "json")
+    /// Resource file `usersprod.json`.
+    static let usersprodJson = Rswift.FileResource(bundle: R.hostingBundle, name: "usersprod", pathExtension: "json")
 
     /// `bundle.url(forResource: "Configuration", withExtension: "plist")`
     static func configurationPlist(_: Void = ()) -> Foundation.URL? {
@@ -130,6 +136,24 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "instructions", withExtension: "md")`
     static func instructionsMd(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.instructionsMd
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "todosProd", withExtension: "json")`
+    static func todosProdJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.todosProdJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "todossmall", withExtension: "json")`
+    static func todossmallJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.todossmallJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "usersprod", withExtension: "json")`
+    static func usersprodJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.usersprodJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
