@@ -3,15 +3,15 @@ import UIKit
 class TodoTableViewController: UITableViewController {
 
     var todos: [String] = ["hello", "antoine"]
-
+    var service: TodosService = TodosService()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        service.retrieve { elements in
+            self.todos = elements
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source

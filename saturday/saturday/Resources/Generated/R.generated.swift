@@ -114,12 +114,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `Configuration.plist`.
     static let configurationPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "plist")
     /// Resource file `instructions.md`.
     static let instructionsMd = Rswift.FileResource(bundle: R.hostingBundle, name: "instructions", pathExtension: "md")
+    /// Resource file `simplearrayOfStrings.json`.
+    static let simplearrayOfStringsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "simplearrayOfStrings", pathExtension: "json")
     /// Resource file `todosProd.json`.
     static let todosProdJson = Rswift.FileResource(bundle: R.hostingBundle, name: "todosProd", pathExtension: "json")
     /// Resource file `todossmall.json`.
@@ -136,6 +138,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "instructions", withExtension: "md")`
     static func instructionsMd(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.instructionsMd
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "simplearrayOfStrings", withExtension: "json")`
+    static func simplearrayOfStringsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simplearrayOfStringsJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 

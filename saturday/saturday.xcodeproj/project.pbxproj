@@ -28,6 +28,7 @@
 		EDA34D1B241D8843004322A9 /* usersprod.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA34D18241D8843004322A9 /* usersprod.json */; };
 		EDA34D1C241D8843004322A9 /* todosProd.json in Resources */ = {isa = PBXBuildFile; fileRef = EDA34D19241D8843004322A9 /* todosProd.json */; };
 		EDA34D24241D8B29004322A9 /* TodosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA34D23241D8B29004322A9 /* TodosService.swift */; };
+		EDB3E1BB241E3B100065025D /* simplearrayOfStrings.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB3E1BA241E3B100065025D /* simplearrayOfStrings.json */; };
 		FCB2C7CB1F57127800481080 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB2C7CA1F57127800481080 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		EDA34D18241D8843004322A9 /* usersprod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = usersprod.json; path = ../usersprod.json; sourceTree = "<group>"; };
 		EDA34D19241D8843004322A9 /* todosProd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = todosProd.json; path = ../todosProd.json; sourceTree = "<group>"; };
 		EDA34D23241D8B29004322A9 /* TodosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodosService.swift; path = "saturday/Enterprise business rules/Entities/TodosService.swift"; sourceTree = SOURCE_ROOT; };
+		EDB3E1BA241E3B100065025D /* simplearrayOfStrings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = simplearrayOfStrings.json; path = ../simplearrayOfStrings.json; sourceTree = "<group>"; };
 		FCB2C7CA1F57127800481080 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				55F50BE321404BDD00FAC039 /* Readme.md */,
 				EDA34D10241D8119004322A9 /* instructions.md */,
 				EDA34D19241D8843004322A9 /* todosProd.json */,
+				EDB3E1BA241E3B100065025D /* simplearrayOfStrings.json */,
 				EDA34D17241D8843004322A9 /* todossmall.json */,
 				EDA34D18241D8843004322A9 /* usersprod.json */,
 				2A1E77351F384BFC006C84D4 /* saturday */,
@@ -446,6 +449,7 @@
 				EDA34D14241D832E004322A9 /* Main.storyboard in Resources */,
 				EDA34D1B241D8843004322A9 /* usersprod.json in Resources */,
 				2A1E77411F384BFD006C84D4 /* LaunchScreen.storyboard in Resources */,
+				EDB3E1BB241E3B100065025D /* simplearrayOfStrings.json in Resources */,
 				2A1E773E1F384BFD006C84D4 /* Assets.xcassets in Resources */,
 				EDA34D1C241D8843004322A9 /* todosProd.json in Resources */,
 			);
