@@ -44,7 +44,6 @@ class TodosService {
             completionHandler(["had some", "problems"])
             return
         }
-        sleep(10)
         adaptJSONToArray(responseData, completionHandler: completionHandler)
     }
 
