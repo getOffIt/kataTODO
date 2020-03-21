@@ -47,8 +47,8 @@ class TodosService {
         adaptJSONToArray(responseData, completionHandler: completionHandler)
     }
 
-    enum Endpoints: String {
-        case todos = "https://jsonplaceholder.typicode.com/todos"
+    struct Endpoints {
+        let todos = "https://jsonplaceholder.typicode.com/todos"
     }
 
     func retrieveRemote(completionHandler: @escaping (_ todos: [String]) -> Void) {
@@ -57,7 +57,11 @@ class TodosService {
         // return
 
         let session: URLSession = URLSession(configuration: .default)
-        session.dataTask(with: URL(string: Endpoints.todos.rawValue)!, completionHandler: { data, _, error in
+        guard let todoURL = URL(string: Endpoints().todos) else {
+            completionHandler(["bad", "URL"])
+            return
+        }
+        session.dataTask(with: todoURL) { data, _, error in
             guard let responseData = data else {
                 completionHandler(["Something", "went", "wrong", error.debugDescription])
                 return
@@ -69,6 +73,6 @@ class TodosService {
             } catch {
                 print("error:\(error)")
             }
-        }).resume()
+        }.resume()
     }
 }
