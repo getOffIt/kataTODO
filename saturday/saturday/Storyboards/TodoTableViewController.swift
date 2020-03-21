@@ -16,6 +16,9 @@ class TodoViewController: UIViewController {
             }
         }
     }
+
+    @IBAction func segmentControllerValueDidChange(_ sender: UISegmentedControl) {
+    }
 }
 
 extension TodoViewController: UITableViewDataSource {
