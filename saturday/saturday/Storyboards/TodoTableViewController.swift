@@ -2,6 +2,7 @@ import UIKit
 
 class TodoTableViewController: UITableViewController {
 
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     var todos: [String] = ["hello", "antoine"]
     var service: TodosService = TodosService()
     override func viewDidLoad() {
@@ -10,6 +11,7 @@ class TodoTableViewController: UITableViewController {
             self.todos = elements
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
