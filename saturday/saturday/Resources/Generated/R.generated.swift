@@ -281,7 +281,7 @@ struct _R: Rswift.Validatable {
 
     #if os(iOS) || os(tvOS)
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = TodoTableViewController
+      typealias InitialController = TodoViewController
 
       let bundle = R.hostingBundle
       let name = "Main"

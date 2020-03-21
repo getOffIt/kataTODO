@@ -1,10 +1,11 @@
 import UIKit
 
-class TodoTableViewController: UITableViewController {
+class TodoViewController: UIViewController {
 
     @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     var todos: [String] = ["hello", "antoine"]
     var service: TodosService = TodosService()
+    @IBOutlet weak private var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         service.retrieve { elements in
@@ -15,20 +16,20 @@ class TodoTableViewController: UITableViewController {
             }
         }
     }
+}
 
+extension TodoViewController: UITableViewDataSource {
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todos.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TODOCELLreuseIdentifier", for: indexPath)
 
         cell.textLabel?.text = todos[indexPath.row]
