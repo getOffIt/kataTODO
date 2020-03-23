@@ -41,7 +41,7 @@ extension TodoViewController: UITableViewDataSource {
 }
 
 class ElementProvider {
-    var todos = [TODOsPODO]()
+    var todos = [TODOsPODO]([TODOsPODO(title: "Loading", userId: 0, completed: false)])
     var count: Int {
             return todos.count
     }

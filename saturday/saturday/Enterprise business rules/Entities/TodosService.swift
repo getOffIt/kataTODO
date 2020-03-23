@@ -5,6 +5,7 @@ import Foundation
 struct TODOsPODO {
     let title: String
     let userId: Int
+    let completed: Bool
 }
 
 class TodosService {
@@ -13,18 +14,24 @@ class TodosService {
         let todos = "https://jsonplaceholder.typicode.com/todos"
     }
 
-    struct ResponseData: Decodable {
+    struct ResponseDataTODOS: Decodable {
         let title: String
         let userId: Int
+        let completed: Bool
+    }
+
+    struct ResponseDataUsers: Decodable {
+        let id: Int
+        let name: String
     }
     var finalCompletionHandler: ([TODOsPODO]) -> Void = { todo in }
 
-    func loadJson(filename fileName: String) -> [ResponseData]? {
+    func loadJson(filename fileName: String) -> [ResponseDataTODOS]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([ResponseData].self, from: data)
+                let jsonData = try decoder.decode([ResponseDataTODOS].self, from: data)
                 return jsonData
             } catch {
                 print("error:\(error)")
@@ -52,7 +59,7 @@ class TodosService {
             }
             do {
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([ResponseData].self, from: responseData)
+                let jsonData = try decoder.decode([ResponseDataTODOS].self, from: responseData)
                 self.adaptJSONToTODOsPODO(jsonData)
             } catch {
                 print("error:\(error)")
@@ -60,10 +67,10 @@ class TodosService {
         }.resume()
     }
 
-    fileprivate func adaptJSONToTODOsPODO(_ responseData: [TodosService.ResponseData]) {
+    fileprivate func adaptJSONToTODOsPODO(_ responseData: [TodosService.ResponseDataTODOS]) {
         var todos = [TODOsPODO]()
         for row in responseData {
-            let todo = TODOsPODO(title: row.title, userId: row.userId)
+            let todo = TODOsPODO(title: row.title, userId: row.userId, completed: row.completed)
             todos.append(todo)
         }
         finishWith(todos)
@@ -75,10 +82,32 @@ class TodosService {
         }
     }
 
+    fileprivate func addRemoteusersToTodos(_ todos: [TODOsPODO]) {
+        guard let usersURL = URL(string: Endpoints().todos) else {
+            finishWithError(["url error for users"])
+            return
+        }
+        URLSession(configuration: .default).dataTask(with: usersURL) {data, _, _ in
+            guard let responseData = data else {
+                self.finishWithError(["error reading user data"])
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([ResponseDataUsers].self, from: responseData)
+
+            }
+            catch {
+                self.finishWithError(["error unpacking user data"])
+            }
+
+        }
+    }
+
     fileprivate func finishWithError(_ todos: [String]) {
         var todos = [TODOsPODO]()
         for row in todos {
-            let todo = TODOsPODO(title: row.title, userId: 0)
+            let todo = TODOsPODO(title: row.title, userId: 0, completed: false)
             todos.append(todo)
         }
         self.finishWith(todos)
