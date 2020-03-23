@@ -84,7 +84,7 @@ class TodosService {
         self.finishWith(todos)
     }
 
-    fileprivate func finish() {
+    fileprivate func finishWithGenericError() {
         finishWithError(["had", "some", "problems"])
     }
 }
