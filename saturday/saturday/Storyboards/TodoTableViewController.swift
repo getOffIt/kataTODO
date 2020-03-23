@@ -35,17 +35,17 @@ extension TodoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TODOCELLreuseIdentifier", for: indexPath)
 
-        cell.textLabel?.text = todos[indexPath.row]
+        cell.textLabel?.text = todos[indexPath.row].title
         return cell
     }
 }
 
 class ElementProvider {
-    var todos: [String] = ["hello", "antoine"]
+    var todos = [TODOsPODO]()
     var count: Int {
             return todos.count
     }
-    subscript(index: Int) -> String {
+    subscript(index: Int) -> TODOsPODO {
         return todos[index]
     }
 }

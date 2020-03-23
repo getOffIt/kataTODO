@@ -2,6 +2,11 @@
 
 import Foundation
 
+struct TODOsPODO {
+    let title: String
+    let userId: Int
+}
+
 class TodosService {
 
     struct Endpoints {
@@ -10,8 +15,10 @@ class TodosService {
 
     struct ResponseData: Decodable {
         let title: String
+        let userId: Int
     }
-    var finalCompletionHandler: ([String]) -> Void = { todo in }
+    var finalCompletionHandler: ([TODOsPODO]) -> Void = { todo in }
+
     func loadJson(filename fileName: String) -> [ResponseData]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
@@ -26,54 +33,58 @@ class TodosService {
         return nil
     }
 
-    func retrieve(completionHandler: @escaping (_ todos: [String]) -> Void) {
+    func retrieve(completionHandler: @escaping (_ todos: [TODOsPODO]) -> Void) {
         self.finalCompletionHandler = completionHandler
         retrieveRemote(completionHandler: completionHandler)
     }
 
-    func retrieveRemote(completionHandler: @escaping (_ todos: [String]) -> Void) {
-        //request
-        // get json out of request
-        // return
+    func retrieveRemote(completionHandler: @escaping (_ todos: [TODOsPODO]) -> Void) {
 
         let session: URLSession = URLSession(configuration: .default)
         guard let todoURL = URL(string: Endpoints().todos) else {
-            completionHandler(["bad", "URL"])
+            finishWithError(["bad", "URL"])
             return
         }
         session.dataTask(with: todoURL) { data, _, error in
             guard let responseData = data else {
-                completionHandler(["Something", "went", "wrong", error.debugDescription])
+                self.finishWithError(["Something", "went", "wrong", error.debugDescription])
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([ResponseData].self, from: responseData)
-                self.adaptJSONToArray(jsonData, completionHandler: completionHandler)
+                self.adaptJSONToTODOsPODO(jsonData)
             } catch {
                 print("error:\(error)")
             }
         }.resume()
     }
 
-    func retrieveLocal(completionHandler: @escaping (_ todos: [String]) -> Void) {
-
-        guard let responseData = loadJson(filename: "todossmall") else {
-            completionHandler(["had some", "problems"])
-            return
+    fileprivate func adaptJSONToTODOsPODO(_ responseData: [TodosService.ResponseData]) {
+        var todos = [TODOsPODO]()
+        for row in responseData {
+            let todo = TODOsPODO(title: row.title, userId: row.userId)
+            todos.append(todo)
         }
-        adaptJSONToArray(responseData, completionHandler: completionHandler)
+        finishWith(todos)
     }
 
-    fileprivate func adaptJSONToArray(_ responseData: [TodosService.ResponseData],
-                                      completionHandler: @escaping ([String]) -> Void) {
-        var titles = [String]()
-        for row in responseData {
-            titles.append(row.title)
-        }
+    fileprivate func finishWith(_ todos: [TODOsPODO]) {
         DispatchQueue.global().async {
-//            completionHandler(titles)
-            self.finalCompletionHandler(titles)
+            self.finalCompletionHandler(todos)
         }
+    }
+
+    fileprivate func finishWithError(_ todos: [String]) {
+        var todos = [TODOsPODO]()
+        for row in todos {
+            let todo = TODOsPODO(title: row.title, userId: 0)
+            todos.append(todo)
+        }
+        self.finishWith(todos)
+    }
+
+    fileprivate func finish() {
+        finishWithError(["had", "some", "problems"])
     }
 }
