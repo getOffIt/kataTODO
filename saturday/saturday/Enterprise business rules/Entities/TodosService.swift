@@ -4,10 +4,14 @@ import Foundation
 
 class TodosService {
 
+    struct Endpoints {
+        let todos = "https://jsonplaceholder.typicode.com/todos"
+    }
+
     struct ResponseData: Decodable {
         let title: String
     }
-
+    var finalCompletionHandler: ([String]) -> Void = { todo in }
     func loadJson(filename fileName: String) -> [ResponseData]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
@@ -23,32 +27,8 @@ class TodosService {
     }
 
     func retrieve(completionHandler: @escaping (_ todos: [String]) -> Void) {
-
+        self.finalCompletionHandler = completionHandler
         retrieveRemote(completionHandler: completionHandler)
-    }
-
-    fileprivate func adaptJSONToArray(_ responseData: [TodosService.ResponseData],
-                                      completionHandler: @escaping ([String]) -> Void) {
-        var titles = [String]()
-        for row in responseData {
-            titles.append(row.title)
-        }
-        DispatchQueue.global().async {
-            completionHandler(titles)
-        }
-    }
-
-    func retrieveLocal(completionHandler: @escaping (_ todos: [String]) -> Void) {
-
-        guard let responseData = loadJson(filename: "todossmall") else {
-            completionHandler(["had some", "problems"])
-            return
-        }
-        adaptJSONToArray(responseData, completionHandler: completionHandler)
-    }
-
-    struct Endpoints {
-        let todos = "https://jsonplaceholder.typicode.com/todos"
     }
 
     func retrieveRemote(completionHandler: @escaping (_ todos: [String]) -> Void) {
@@ -74,5 +54,26 @@ class TodosService {
                 print("error:\(error)")
             }
         }.resume()
+    }
+
+    func retrieveLocal(completionHandler: @escaping (_ todos: [String]) -> Void) {
+
+        guard let responseData = loadJson(filename: "todossmall") else {
+            completionHandler(["had some", "problems"])
+            return
+        }
+        adaptJSONToArray(responseData, completionHandler: completionHandler)
+    }
+
+    fileprivate func adaptJSONToArray(_ responseData: [TodosService.ResponseData],
+                                      completionHandler: @escaping ([String]) -> Void) {
+        var titles = [String]()
+        for row in responseData {
+            titles.append(row.title)
+        }
+        DispatchQueue.global().async {
+//            completionHandler(titles)
+            self.finalCompletionHandler(titles)
+        }
     }
 }

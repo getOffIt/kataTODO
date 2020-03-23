@@ -29,7 +29,7 @@ extension TodoViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos.count()
+        return todos.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,10 +42,9 @@ extension TodoViewController: UITableViewDataSource {
 
 class ElementProvider {
     var todos: [String] = ["hello", "antoine"]
-    func count() -> Int {
-        return todos.count
+    var count: Int {
+            return todos.count
     }
-
     subscript(index: Int) -> String {
         return todos[index]
     }
