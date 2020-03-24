@@ -6,6 +6,7 @@ struct TODOsPODO {
     let title: String
     let userId: Int
     let completed: Bool
+    var authorName: String
 }
 
 class TodosService {
@@ -70,7 +71,7 @@ class TodosService {
     fileprivate func adaptJSONToTODOsPODO(_ responseData: [TodosService.ResponseDataTODOS]) {
         var todos = [TODOsPODO]()
         for row in responseData {
-            let todo = TODOsPODO(title: row.title, userId: row.userId, completed: row.completed)
+            let todo = TODOsPODO(title: row.title, userId: row.userId, completed: row.completed, authorName: "")
             todos.append(todo)
         }
         finishWith(todos)
@@ -95,19 +96,31 @@ class TodosService {
             do {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([ResponseDataUsers].self, from: responseData)
-
+                self.addUserDatatoTodos(todos, users: jsonData)
             }
             catch {
                 self.finishWithError(["error unpacking user data"])
             }
-
         }
+    }
+
+    fileprivate func addUserDatatoTodos(_ todos: [TODOsPODO], users: [ResponseDataUsers]) {
+        var updatedTodos = [TODOsPODO]()
+        for todo in todos {
+            let authorName: String = users.filter { $0.id == todo.userId}[0].name
+            let updatedTodo = TODOsPODO(title: todo.title, userId: todo.userId, completed: todo.completed, authorName: authorName)
+            updatedTodos.append(updatedTodo)
+        }
+
+        var updatedTodos = todos.map
+
+
     }
 
     fileprivate func finishWithError(_ todos: [String]) {
         var todos = [TODOsPODO]()
         for row in todos {
-            let todo = TODOsPODO(title: row.title, userId: 0, completed: false)
+            let todo = TODOsPODO(title: row.title, userId: 0, completed: false, authorName: "")
             todos.append(todo)
         }
         self.finishWith(todos)
