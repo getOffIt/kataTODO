@@ -47,6 +47,7 @@ class TodoViewController: UIViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TODOCELLreuseIdentifier", for: indexPath)
 
             cell.textLabel?.text = todos[indexPath.row].title
+            cell.detailTextLabel?.text = todos[indexPath.row].authorName
             return cell
         }
     }
