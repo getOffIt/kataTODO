@@ -58,7 +58,7 @@ class TodoViewController: UIViewController {
     }
 
     class ElementProvider {
-        var todos = [TODOsPODO]([TODOsPODO(title: "Loading", userId: 0, completed: false)])
+        var todos = [TODOsPODO]([TODOsPODO(title: "Loading", userId: 0, completed: false, authorName: "")])
         var completionFilter = CompletionFilter.all
         lazy private var activeTodos = todos.filter { $0.completed == false }
         lazy private var completedTodos = todos.filter { $0.completed == true }

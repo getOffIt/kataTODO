@@ -13,6 +13,7 @@ class TodosService {
 
     struct Endpoints {
         let todos = "https://jsonplaceholder.typicode.com/todos"
+        let users = "https://jsonplaceholder.typicode.com/users"
     }
 
     struct ResponseDataTODOS: Decodable {
@@ -74,7 +75,7 @@ class TodosService {
             let todo = TODOsPODO(title: row.title, userId: row.userId, completed: row.completed, authorName: "")
             todos.append(todo)
         }
-        finishWith(todos)
+        addRemoteusersToTodos(todos)
     }
 
     fileprivate func finishWith(_ todos: [TODOsPODO]) {
@@ -84,7 +85,7 @@ class TodosService {
     }
 
     fileprivate func addRemoteusersToTodos(_ todos: [TODOsPODO]) {
-        guard let usersURL = URL(string: Endpoints().todos) else {
+        guard let usersURL = URL(string: Endpoints().users) else {
             finishWithError(["url error for users"])
             return
         }
@@ -97,33 +98,30 @@ class TodosService {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([ResponseDataUsers].self, from: responseData)
                 self.addUserDatatoTodos(todos, users: jsonData)
-            }
-            catch {
+            } catch {
                 self.finishWithError(["error unpacking user data"])
             }
-        }
+        }.resume()
     }
 
     fileprivate func addUserDatatoTodos(_ todos: [TODOsPODO], users: [ResponseDataUsers]) {
         var updatedTodos = [TODOsPODO]()
         for todo in todos {
-            let authorName: String = users.filter { $0.id == todo.userId}[0].name
-            let updatedTodo = TODOsPODO(title: todo.title, userId: todo.userId, completed: todo.completed, authorName: authorName)
+            let authorName: String = users.filter { $0.id == todo.userId }[0].name
+            let updatedTodo = TODOsPODO(title: todo.title, userId: todo.userId,
+                                        completed: todo.completed, authorName: authorName)
             updatedTodos.append(updatedTodo)
         }
-
-        var updatedTodos = todos.map
-
-
+        finishWith(updatedTodos)
     }
 
     fileprivate func finishWithError(_ todos: [String]) {
-        var todos = [TODOsPODO]()
+        var newTodos = [TODOsPODO]()
         for row in todos {
-            let todo = TODOsPODO(title: row.title, userId: 0, completed: false, authorName: "")
-            todos.append(todo)
+            let todo = TODOsPODO(title: row, userId: 0, completed: false, authorName: "")
+            newTodos.append(todo)
         }
-        self.finishWith(todos)
+        self.finishWith(newTodos)
     }
 
     fileprivate func finishWithGenericError() {
